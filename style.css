@@ -1,0 +1,179 @@
+/* Global Reset and Typography */
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background-color: #f3f4f6;
+  color: #333;
+  line-height: 1.6;
+  padding: 20px;
+}
+
+.main-header {
+  text-align: center;
+  color: #0e3254;
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.subheader {
+  text-align: center;
+  color: #555;
+  font-size: 1.1rem;
+  max-width: 700px;
+  margin: 10px auto 30px;
+  padding: 0 20px;
+}
+
+.box-model {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Content Section Styling */
+.content {
+  background-color: #0e3254;
+  color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.title {
+  color: #21f3aa;
+}
+
+ul {
+  margin-top: 20px;
+  padding-left: 20px;
+}
+
+li {
+  margin-bottom: 15px;
+}
+
+/* Box Container Styling */
+.box-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Box Styling */
+#box {
+  width: 300px;
+  height: 150px;
+  background-color: #9fd3ea;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Button and Input Fields Styling */
+.buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+input[type="color"] {
+  width: 50px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type="number"] {
+  padding: 10px;
+  width: 130px;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+  transition: border-color 0.3s;
+}
+
+input[type="number"]:focus {
+  border-color: #21f3aa;
+}
+
+/* Switch Styling */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 30px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: 0.4s;
+  border-radius: 50px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 22px;
+  width: 22px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: 0.4s;
+}
+
+input:checked + .slider {
+  background-color: #21f3aa;
+}
+
+input:checked + .slider:before {
+  transform: translateX(26px);
+}
+
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+/* Dimensions Section Styling */
+.dimensions {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.dimensions p {
+  font-size: 1rem;
+  color: #0e3254;
+}
