@@ -32,6 +32,7 @@ body {
 .box-model {
   display: grid;
   grid-template-columns: 1fr 2fr;
+
   gap: 30px;
   max-width: 1200px;
   margin: 0 auto;
@@ -170,10 +171,59 @@ input:checked + .slider:before {
 /* Dimensions Section Styling */
 .dimensions {
   margin-top: 20px;
-  text-align: center;
+  height: 100px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  border-radius: 0.45rem;
 }
 
 .dimensions p {
   font-size: 1rem;
   color: #0e3254;
+}
+
+/* Styles for Dimensions Section Spans */
+.dimensions span {
+  font-weight: bold;
+  padding: 4px 8px;
+  border-radius: 4px;
+  color: white;
+  background-color: #0e3254; /* Deep blue for contrast */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.dimensions span:hover {
+  background-color: #21f3aa; /* Green for hover effect */
+  transform: scale(1.05);
+}
+/* Footer Styling */
+.footer {
+  text-align: center;
+  background-color: #0e3254; /* Matches content section */
+  color: white;
+  padding: 15px 20px;
+  margin-top: 30px;
+  font-size: 0.9rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.footer p {
+  margin: 0;
+}
+
+.footer a {
+  text-decoration: none;
+  color: #21f3aa;
+}
+
+@media screen and (max-width: 786px) {
+  .box-model {
+    grid-template-columns: repeat(auto-fill, minmax(300px, auto));
+  }
 }

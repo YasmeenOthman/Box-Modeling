@@ -1,19 +1,18 @@
 let box = document.getElementById("box");
-let colorInput = document.getElementById("color");
 let widthInput = document.getElementById("width");
+let heightInput = document.getElementById("height");
 let paddingInput = document.getElementById("padding");
 let borderInput = document.getElementById("border");
 let switchBoxSizing = document.querySelector(".switch input");
 let contentBoxSizeDisplay = document.getElementById("content-box-size");
 let borderBoxSizeDisplay = document.getElementById("border-box-size");
 
-let colorValue = "";
 let widthValue = null;
+let heightValue = null;
 let paddingValue = 0;
 let borderValue = 0;
 let boxSizingValue = "content-box"; // Default box-sizing value
 
-// Function to calculate the content area width (only content, no padding/border)
 function calculateContentWidth() {
   const computedStyles = window.getComputedStyle(box);
   const totalWidth = parseFloat(computedStyles.width);
@@ -22,86 +21,98 @@ function calculateContentWidth() {
   const borderLeft = parseFloat(computedStyles.borderLeftWidth);
   const borderRight = parseFloat(computedStyles.borderRightWidth);
 
-  // Content width calculation
-  return totalWidth - (paddingLeft + paddingRight + borderLeft + borderRight);
+  return boxSizingValue === "content-box"
+    ? totalWidth
+    : totalWidth - (paddingLeft + paddingRight + borderLeft + borderRight);
 }
 
-// Function to calculate the border-box width (includes padding and border)
-function calculateBorderWidth() {
+function calculateContentHeight() {
   const computedStyles = window.getComputedStyle(box);
-  const totalWidth = parseFloat(computedStyles.width);
-  return totalWidth; // When box-sizing is border-box, total width includes padding/border
+  const totalHeight = parseFloat(computedStyles.height);
+  const paddingTop = parseFloat(computedStyles.paddingTop);
+  const paddingBottom = parseFloat(computedStyles.paddingBottom);
+  const borderTop = parseFloat(computedStyles.borderTopWidth);
+  const borderBottom = parseFloat(computedStyles.borderBottomWidth);
+
+  return boxSizingValue === "content-box"
+    ? totalHeight
+    : totalHeight - (paddingTop + paddingBottom + borderTop + borderBottom);
 }
 
-// Function to update the box background color based on user input
-function setBoxColor(e) {
-  colorValue = e.target.value;
-  box.style.backgroundColor = colorValue;
-}
-// Function to update the box width based on user input
-function setBoxWidth(e) {
-  widthValue = e.target.value;
-  box.style.width = `${widthValue}px`;
-  updateDimensions();
-}
-
-// Function to set padding on the box
-function setPadding(e) {
-  paddingValue = e.target.value;
-  box.style.padding = `${paddingValue}px`;
-
-  updateDimensions();
-}
-
-// Function to set border on the box
-function setBorder(e) {
-  borderValue = e.target.value;
-  box.style.border = `${borderValue}px solid #333`;
-
-  updateDimensions();
-}
-
-// Function to toggle box-sizing
-function toggleBoxSizing(e) {
-  boxSizingValue = e.target.checked ? "border-box" : "content-box";
-  box.style.boxSizing = boxSizingValue;
-
-  updateDimensions();
-}
-
-// Function to update the content-box and border-box size displays
 function updateDimensions() {
   if (boxSizingValue === "content-box") {
-    contentBoxSizeDisplay.textContent = `${calculateContentWidth()}px`;
-    borderBoxSizeDisplay.textContent = `${
+    contentBoxSizeDisplay.innerText = `${widthValue}px`;
+    borderBoxSizeDisplay.innerText = `${
       widthValue + paddingValue * 2 + borderValue * 2
     }px`;
   } else {
-    contentBoxSizeDisplay.textContent = `${widthValue}px`;
-    borderBoxSizeDisplay.textContent = `${
-      widthValue + paddingValue * 2 + borderValue * 2
+    contentBoxSizeDisplay.innerText = `${
+      widthValue - paddingValue * 2 - borderValue * 2
     }px`;
+    borderBoxSizeDisplay.innerText = `${widthValue}px`;
   }
+
+  // Update the inner HTML of the box to show current dimensions
+  box.innerHTML = `${Math.round(calculateContentWidth())}px × ${Math.round(
+    calculateContentHeight()
+  )}px`;
 }
 
-// Function to initialize width and events
 function initialize() {
   widthValue = calculateContentWidth();
+  heightValue = calculateContentHeight();
   widthInput.value = widthValue; // Set initial value in the input field
+  heightInput.value = heightValue; // Set initial value in the input field
   box.style.width = `${widthValue}px`;
+  box.style.height = `${heightValue}px`;
   box.style.padding = `${paddingValue}px`;
   box.style.border = `${borderValue}px solid #333`;
+  box.style.boxSizing = boxSizingValue;
 
+  widthValue = calculateContentWidth();
+  heightValue = calculateContentHeight();
+
+  widthInput.value = widthValue;
+  heightInput.value = heightValue;
+
+  box.innerHTML = `${widthValue} * ${heightValue}`;
   updateDimensions();
 }
 
-// Event listeners for user input
-colorInput.addEventListener("change", setBoxColor);
+function setBoxWidth(e) {
+  widthValue = parseFloat(e.target.value);
+  box.style.width = `${widthValue}px`;
+  updateDimensions();
+}
+
+function setBoxHeight(e) {
+  heightValue = parseFloat(e.target.value);
+  box.style.height = `${heightValue}px`;
+  updateDimensions();
+}
+
+function setPadding(e) {
+  paddingValue = parseFloat(e.target.value);
+  box.style.padding = `${paddingValue}px`;
+  updateDimensions();
+}
+
+function setBorder(e) {
+  borderValue = parseFloat(e.target.value);
+  box.style.border = `${borderValue}px solid #333`;
+  updateDimensions();
+}
+
+function toggleBoxSizing(e) {
+  boxSizingValue = e.target.checked ? "border-box" : "content-box";
+  box.style.boxSizing = boxSizingValue;
+  updateDimensions();
+}
 
 widthInput.addEventListener("input", setBoxWidth);
+heightInput.addEventListener("input", setBoxHeight);
 paddingInput.addEventListener("input", setPadding);
 borderInput.addEventListener("input", setBorder);
 switchBoxSizing.addEventListener("change", toggleBoxSizing);
 
-// Initialize dimensions
 initialize();

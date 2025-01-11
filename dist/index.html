@@ -47,16 +47,28 @@
       <div class="box-container">
         <div class="buttons">
           <div class="inputs">
-            <input type="color" name="color" id="color" />
             <input
               type="number"
               name="width"
               id="width"
               placeholder="setWidth"
-              min="200"
+              min="100"
             />
-            <input type="number" placeholder="Add Padding" id="padding" />
-            <input type="number" placeholder="Add Border" id="border" />
+            <input
+              type="number"
+              name="height"
+              id="height"
+              placeholder="setHeight"
+              min="20"
+            />
+
+            <input
+              type="number"
+              placeholder="Add Padding"
+              id="padding"
+              min="0"
+            />
+            <input type="number" placeholder="Add Border" id="border" min="0" />
           </div>
           <div>
             content-box
@@ -69,11 +81,29 @@
         </div>
         <div id="box">Box Content</div>
         <div class="dimensions">
-          <p>Size with (content-box): <span id="content-box-size"></span></p>
-          <p>Size with (border-box): <span id="border-box-size"></span></p>
+          <p>
+            Full width (includes padding and border):
+            <span id="border-box-size">300px</span>
+          </p>
+          <p>
+            Content area width (excluding padding and border):
+            <span id="content-box-size">260px</span>
+          </p>
         </div>
       </div>
     </div>
-    <script src="./script.js"></script>
+    <footer class="footer">
+      <p>
+        Simulation crafted with 💻 and ❤️ by
+        <strong
+          ><a href="https://github.com/YasmeenOthman" target="_blank"
+            >Yasmeen Othman</a
+          ></strong
+        >
+        - Fullstack Developer.
+      </p>
+    </footer>
+
+    <script src="./main.js"></script>
   </body>
 </html>
