@@ -91,27 +91,18 @@ function setBoxHeight(e) {
   updateDimensions();
 }
 
-// function setPadding(e) {
-//   paddingValue = parseFloat(e.target.value);
-//   box.style.padding = `${paddingValue}px`;
-//   updateDimensions();
-// }
 function setPadding(e) {
-  paddingValue = parseFloat(e.target.value); // Get the padding value from the input
-
-  // Update box padding
+  paddingValue = parseFloat(e.target.value);
   box.style.padding = `${paddingValue}px`;
 
-  // If padding > 0, add the highlight with exact padding values
   if (paddingValue > 0) {
     // Apply the box-shadow inset based on the padding value
-    box.style.boxShadow = `inset 0 0 0 ${paddingValue}px rgba(255, 165, 0, 0.5)`;
+    box.style.boxShadow = `inset 0 0 0 ${paddingValue}px rgba(255, 55, 0, 0.5)`;
   } else {
     // Remove box-shadow when padding is 0
     box.style.boxShadow = "none";
   }
-
-  updateDimensions(); // Update the dimensions after changing padding
+  updateDimensions();
 }
 
 function setBorder(e) {
