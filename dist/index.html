@@ -47,37 +47,48 @@
       <div class="box-container">
         <div class="buttons">
           <div class="inputs">
-            <input
-              type="number"
-              name="width"
-              id="width"
-              placeholder="setWidth"
-              min="100"
-              max="500"
-            />
-            <input
-              type="number"
-              name="height"
-              id="height"
-              placeholder="setHeight"
-              min="20"
-              max="300"
-            />
-
-            <input
-              type="number"
-              placeholder="Add Padding"
-              id="padding"
-              min="0"
-              max="30"
-            />
-            <input
-              type="number"
-              placeholder="Add Border"
-              id="border"
-              min="0"
-              max="30"
-            />
+            <div class="label-input-container">
+              <label for="width">Width</label>
+              <input
+                type="number"
+                name="width"
+                id="width"
+                min="100"
+                max="500"
+                title="content width"
+              />
+            </div>
+            <div class="label-input-container">
+              <label for="height">Height</label>
+              <input
+                type="number"
+                name="height"
+                id="height"
+                min="20"
+                max="300"
+                title="content height"
+              />
+            </div>
+            <div class="label-input-container">
+              <label for="padding">Padding</label>
+              <input
+                type="number"
+                id="padding"
+                title="padding"
+                min="0"
+                max="30"
+              />
+            </div>
+            <div class="label-input-container">
+              <label for="border">Border</label>
+              <input
+                type="number"
+                id="border"
+                title="border"
+                min="0"
+                max="30"
+              />
+            </div>
           </div>
           <div>
             content-box
