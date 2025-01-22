@@ -53,6 +53,7 @@
               id="width"
               placeholder="setWidth"
               min="100"
+              max="500"
             />
             <input
               type="number"
@@ -60,6 +61,7 @@
               id="height"
               placeholder="setHeight"
               min="20"
+              max="300"
             />
 
             <input
@@ -67,8 +69,15 @@
               placeholder="Add Padding"
               id="padding"
               min="0"
+              max="30"
             />
-            <input type="number" placeholder="Add Border" id="border" min="0" />
+            <input
+              type="number"
+              placeholder="Add Border"
+              id="border"
+              min="0"
+              max="30"
+            />
           </div>
           <div>
             content-box
@@ -83,11 +92,11 @@
         <div class="dimensions">
           <p>
             Full width (includes padding and border):
-            <span id="border-box-size">300px</span>
+            <span id="border-box-size"></span>
           </p>
           <p>
             Content area width (excluding padding and border):
-            <span id="content-box-size">260px</span>
+            <span id="content-box-size"></span>
           </p>
         </div>
       </div>
@@ -104,6 +113,6 @@
       </p>
     </footer>
 
-    <script src="./main.js"></script>
+    <script src="../script.js"></script>
   </body>
 </html>

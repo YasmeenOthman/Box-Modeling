@@ -13,6 +13,7 @@ let paddingValue = 0;
 let borderValue = 0;
 let boxSizingValue = "content-box"; // Default box-sizing value
 
+// Function to calculate content width
 function calculateContentWidth() {
   const computedStyles = window.getComputedStyle(box);
   const totalWidth = parseFloat(computedStyles.width);
@@ -26,6 +27,7 @@ function calculateContentWidth() {
     : totalWidth - (paddingLeft + paddingRight + borderLeft + borderRight);
 }
 
+// Function to calculate content height
 function calculateContentHeight() {
   const computedStyles = window.getComputedStyle(box);
   const totalHeight = parseFloat(computedStyles.height);
@@ -39,88 +41,139 @@ function calculateContentHeight() {
     : totalHeight - (paddingTop + paddingBottom + borderTop + borderBottom);
 }
 
-function updateDimensions() {
+// Update dimensions display
+function updateDimensions(newWidthValue, newHeightValue) {
   if (boxSizingValue === "content-box") {
-    contentBoxSizeDisplay.innerText = `${widthValue}px`;
+    contentBoxSizeDisplay.innerText = `${newWidthValue}px`;
     borderBoxSizeDisplay.innerText = `${
-      widthValue + paddingValue * 2 + borderValue * 2
+      newWidthValue + paddingValue * 2 + borderValue * 2
     }px`;
   } else {
     contentBoxSizeDisplay.innerText = `${
-      widthValue - paddingValue * 2 - borderValue * 2
+      newWidthValue - paddingValue * 2 - borderValue * 2
     }px`;
-    borderBoxSizeDisplay.innerText = `${widthValue}px`;
+    borderBoxSizeDisplay.innerText = `${newWidthValue}px`;
   }
 
   // Update the inner HTML of the box to show current dimensions
-  box.innerHTML = `${Math.round(calculateContentWidth())}px × ${Math.round(
-    calculateContentHeight()
-  )}px`;
+  box.innerHTML = `${newWidthValue} * ${newHeightValue}`;
 }
 
+// Initialize function
 function initialize() {
   widthValue = calculateContentWidth();
   heightValue = calculateContentHeight();
-  widthInput.value = widthValue; // Set initial value in the input field
-  heightInput.value = heightValue; // Set initial value in the input field
-  box.style.width = `${widthValue}px`;
-  box.style.height = `${heightValue}px`;
-  box.style.padding = `${paddingValue}px`;
-  box.style.border = `${borderValue}px solid #333`;
-  box.style.boxSizing = boxSizingValue;
 
-  widthValue = calculateContentWidth();
-  heightValue = calculateContentHeight();
-
+  // Set the initial values in the input fields
   widthInput.value = widthValue;
   heightInput.value = heightValue;
 
-  box.innerHTML = `${widthValue} * ${heightValue}`;
-  updateDimensions();
-}
-
-function setBoxWidth(e) {
-  widthValue = parseFloat(e.target.value);
+  // Set initial styles for the box
   box.style.width = `${widthValue}px`;
-  updateDimensions();
-}
-
-function setBoxHeight(e) {
-  heightValue = parseFloat(e.target.value);
   box.style.height = `${heightValue}px`;
-  updateDimensions();
+  box.style.padding = `${paddingValue}px`;
+  box.style.border = `${borderValue}px solid #333`;
+  box.style.boxSizing = boxSizingValue;
+
+  // Update dimensions display
+  updateDimensions(widthValue, heightValue);
 }
 
+// Set box width
+function setBoxWidth(e) {
+  let newWidth = parseFloat(e.target.value);
+  const maxValue = parseFloat(e.target.max);
+  const minValue = parseFloat(e.target.min);
+
+  if (newWidth > maxValue || newWidth < minValue) {
+    alert(`Please enter a value between ${minValue} and ${maxValue} px.`);
+    newWidth = calculateContentWidth();
+    e.target.value = newWidth;
+  }
+
+  widthValue = newWidth;
+  box.style.width = `${widthValue}px`;
+  updateDimensions(widthValue, heightValue);
+}
+
+// Set box height
+function setBoxHeight(e) {
+  let newHeight = parseFloat(e.target.value);
+  const maxValue = parseFloat(e.target.max);
+  const minValue = parseFloat(e.target.min);
+
+  if (newHeight > maxValue || newHeight < minValue) {
+    alert(`Please enter a value between ${minValue} and ${maxValue} px.`);
+    newHeight = calculateContentHeight();
+    e.target.value = newHeight;
+  }
+
+  heightValue = newHeight;
+  box.style.height = `${heightValue}px`;
+  updateDimensions(widthValue, heightValue);
+}
+
+// Set padding value
 function setPadding(e) {
-  paddingValue = parseFloat(e.target.value);
+  let newPadding = parseFloat(e.target.value);
+  const maxValue = parseFloat(e.target.max);
+  const minValue = parseFloat(e.target.min);
+
+  if (newPadding > maxValue || newPadding < minValue) {
+    alert(
+      `Please enter a padding value between ${minValue} and ${maxValue} px.`
+    );
+    newPadding = paddingValue; // Reset to the current valid value
+    e.target.value = newPadding;
+  }
+
+  paddingValue = newPadding;
   box.style.padding = `${paddingValue}px`;
 
   if (paddingValue > 0) {
-    // Apply the box-shadow inset based on the padding value
     box.style.boxShadow = `inset 0 0 0 ${paddingValue}px rgba(255, 55, 0, 0.5)`;
   } else {
-    // Remove box-shadow when padding is 0
     box.style.boxShadow = "none";
   }
-  updateDimensions();
+  updateDimensions(widthValue, heightValue);
 }
 
+// Set border value
 function setBorder(e) {
-  borderValue = parseFloat(e.target.value);
+  let newBorder = parseFloat(e.target.value);
+  if (!newBorder) {
+    newBorder = 0;
+    e.target.value = null;
+  }
+  const maxValue = parseFloat(e.target.max);
+  const minValue = parseFloat(e.target.min);
+
+  if (newBorder > maxValue || newBorder < minValue) {
+    alert(
+      `Please enter a border value between ${minValue} and ${maxValue} px.`
+    );
+    newBorder = borderValue; // Reset to the current valid value
+    e.target.value = newBorder;
+  }
+
+  borderValue = newBorder;
   box.style.border = `${borderValue}px solid #333`;
-  updateDimensions();
+  updateDimensions(widthValue, heightValue);
 }
 
+// Toggle box-sizing
 function toggleBoxSizing(e) {
   boxSizingValue = e.target.checked ? "border-box" : "content-box";
   box.style.boxSizing = boxSizingValue;
-  updateDimensions();
+  updateDimensions(widthValue, heightValue);
 }
 
-widthInput.addEventListener("input", setBoxWidth);
-heightInput.addEventListener("input", setBoxHeight);
+// Event listeners
+widthInput.addEventListener("change", setBoxWidth);
+heightInput.addEventListener("change", setBoxHeight);
 paddingInput.addEventListener("input", setPadding);
 borderInput.addEventListener("input", setBorder);
 switchBoxSizing.addEventListener("change", toggleBoxSizing);
 
+// Initialize the page
 initialize();
