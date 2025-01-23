@@ -1,10 +1,11 @@
-/* Global Reset and Typography */
+/* Variables and Global Reset */
 :root {
   --mainColor: #0e3254;
   --secondaryColor: #21f3aa;
   --backgroundColor: #333;
   --subbackgroundColor: #555;
 }
+
 * {
   padding: 0;
   margin: 0;
@@ -19,6 +20,7 @@ body {
   padding: 20px;
 }
 
+/* Typography and Headers */
 .main-header {
   text-align: center;
   color: var(--mainColor);
@@ -35,6 +37,7 @@ body {
   padding: 0 20px;
 }
 
+/* Box Model Section */
 .box-model {
   display: grid;
   grid-template-columns: 1fr 2fr;
@@ -43,7 +46,7 @@ body {
   margin: 0 auto;
 }
 
-/* Content Section Styling */
+/* Content Section */
 .content {
   background-color: var(--mainColor);
   color: white;
@@ -65,7 +68,7 @@ li {
   margin-bottom: 15px;
 }
 
-/* Box Container Styling */
+/* Box Container */
 .box-container {
   display: flex;
   flex-direction: column;
@@ -76,16 +79,29 @@ li {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Button and Input Fields Styling */
+/* Buttons and Inputs */
+
 .buttons {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-wrap: wrap;
   justify-content: center;
+  align-items: center;
   padding: 10px;
   gap: 15px;
   margin-bottom: 30px;
 }
+
+.box-sizing-control {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.box-sizing-control label {
+  font-size: 14px;
+  color: var(--mainColor);
+}
+
 .inputs {
   display: flex;
   flex-wrap: wrap;
@@ -95,9 +111,7 @@ li {
   color: var(--mainColor);
   font-size: 14px;
 }
-label:hover {
-  color: var(--secondaryColor);
-}
+
 .label-input-container {
   width: 20%;
   margin: 10px;
@@ -105,6 +119,10 @@ label:hover {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+label:hover {
+  color: var(--secondaryColor);
 }
 
 input[type="number"] {
@@ -122,12 +140,12 @@ input[type="number"]:focus {
   outline: none;
 }
 
-/* Switch Styling */
+/* Switch */
 .switch {
   position: relative;
   display: inline-block;
-  width: 60px;
-  height: 30px;
+  width: 50px;
+  height: 25px;
 }
 
 .switch input {
@@ -151,8 +169,8 @@ input[type="number"]:focus {
 .slider:before {
   position: absolute;
   content: "";
-  height: 22px;
-  width: 22px;
+  height: 18px;
+  width: 18px;
   left: 4px;
   bottom: 4px;
   background-color: white;
@@ -192,24 +210,24 @@ input:checked + .slider:before {
 
 #dimension-badge {
   position: absolute;
-  bottom: -50px;
   right: 0;
-  background-color: var(--mainColor);
-  color: white;
+  background-color: var(--secondaryColor);
+  color: var(--backgroundColor);
   font-size: 14px;
   padding: 2px 6px;
   border-radius: 4px;
   transform: translate(50%, -50%);
   pointer-events: none;
   z-index: 10;
-  opacity: 0; /* Initially hidden */
+  opacity: 0;
   transition: opacity 0.3s ease-in-out;
 }
+
 #box:hover #dimension-badge {
-  opacity: 1; /* Show the badge when hovering over the box */
+  opacity: 1;
 }
 
-/* Dimensions Section Styling */
+/* Dimensions Section */
 .dimensions {
   margin-top: 20px;
   min-height: 100px;
@@ -218,7 +236,6 @@ input:checked + .slider:before {
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
-  /* box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); */
   border-radius: 0.45rem;
 }
 
@@ -227,7 +244,6 @@ input:checked + .slider:before {
   color: var(--mainColor);
 }
 
-/* Styles for Dimensions Section Spans */
 #border-box-size {
   font-weight: bold;
   font-size: 14px;
@@ -246,15 +262,17 @@ input:checked + .slider:before {
   transform: scale(1.05);
 }
 
-/* Highlight padding area */
+/* Padding Highlight */
 .highlight-padding {
   box-shadow: inset 0 0 0 10px rgba(255, 55, 0, 0.5);
 }
 
-/* Footer Styling */
+/* Footer */
 .footer {
+  height: 10vh;
+  width: 100%;
   text-align: center;
-  background-color: #0e3254;
+  background-color: var(--mainColor);
   color: white;
   padding: 15px 20px;
   margin-top: 30px;
@@ -269,15 +287,17 @@ input:checked + .slider:before {
 
 .footer a {
   text-decoration: none;
-  color: #21f3aa;
+  color: var(--secondaryColor);
 }
 
+/* Media Queries */
 @media screen and (max-width: 786px) {
   .box-model {
     grid-template-columns: repeat(auto-fill, minmax(300px, auto));
     align-items: center;
     justify-content: center;
   }
+
   #box {
     width: 200px;
     height: 100px;

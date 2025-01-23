@@ -43,13 +43,12 @@ function calculateContentHeight() {
 
 // Function to update badge position dynamically based on border value
 function updateBadgePosition() {
-  const badgeOffset = 50; // Base offset value
+  const badgeOffset = -15; // Base offset value
   const computedStyles = window.getComputedStyle(box);
-  const borderBottomWidth = parseFloat(computedStyles.borderBottomWidth) || 0;
-
-  // Calculate the bottom position of the badge
-  const newBottomPosition = -1 * (badgeOffset + borderBottomWidth);
-  dimensionBadge.style.bottom = `${newBottomPosition}px`;
+  const borderTopWidth = parseFloat(computedStyles.borderTopWidth) || 0;
+  // Calculate the top position of the badge
+  const newTopPosition = badgeOffset + borderTopWidth;
+  dimensionBadge.style.top = `${newTopPosition}px`;
 }
 
 // Update dimensions display
