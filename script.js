@@ -1,10 +1,10 @@
 let box = document.getElementById("box");
+const dimensionBadge = document.getElementById("dimension-badge");
 let widthInput = document.getElementById("width");
 let heightInput = document.getElementById("height");
 let paddingInput = document.getElementById("padding");
 let borderInput = document.getElementById("border");
 let switchBoxSizing = document.querySelector(".switch input");
-let contentBoxSizeDisplay = document.getElementById("content-box-size");
 let borderBoxSizeDisplay = document.getElementById("border-box-size");
 
 let widthValue = null;
@@ -41,42 +41,35 @@ function calculateContentHeight() {
     : totalHeight - (paddingTop + paddingBottom + borderTop + borderBottom);
 }
 
+// Function to update badge position dynamically based on border value
+function updateBadgePosition() {
+  const badgeOffset = 50; // Base offset value
+  const computedStyles = window.getComputedStyle(box);
+  const borderBottomWidth = parseFloat(computedStyles.borderBottomWidth) || 0;
+
+  // Calculate the bottom position of the badge
+  const newBottomPosition = -1 * (badgeOffset + borderBottomWidth);
+  dimensionBadge.style.bottom = `${newBottomPosition}px`;
+}
+
 // Update dimensions display
 function updateDimensions(newWidthValue, newHeightValue) {
   if (boxSizingValue === "content-box") {
-    contentBoxSizeDisplay.innerText = `${newWidthValue}px`;
+    // contentBoxSizeDisplay.innerText = `${newWidthValue}px × ${newHeightValue}px`;
+
     borderBoxSizeDisplay.innerText = `${
       newWidthValue + paddingValue * 2 + borderValue * 2
-    }px`;
+    }px × ${newHeightValue + paddingValue * 2 + borderValue * 2}px`;
+
+    dimensionBadge.innerText = `${newWidthValue}px × ${newHeightValue}px`;
   } else {
-    contentBoxSizeDisplay.innerText = `${
+    borderBoxSizeDisplay.innerText = `${newWidthValue}px × ${newHeightValue}px`;
+    // Update the inner HTML of the box to show current dimensions
+    dimensionBadge.innerText = `${
       newWidthValue - paddingValue * 2 - borderValue * 2
-    }px`;
-    borderBoxSizeDisplay.innerText = `${newWidthValue}px`;
+    }px × ${newHeightValue - paddingValue * 2 - borderValue * 2}px`;
   }
-
-  // Update the inner HTML of the box to show current dimensions
-  box.innerHTML = `${newWidthValue} * ${newHeightValue}`;
-}
-
-// Initialize function
-function initialize() {
-  widthValue = calculateContentWidth();
-  heightValue = calculateContentHeight();
-
-  // Set the initial values in the input fields
-  widthInput.value = widthValue;
-  heightInput.value = heightValue;
-
-  // Set initial styles for the box
-  box.style.width = `${widthValue}px`;
-  box.style.height = `${heightValue}px`;
-  box.style.padding = `${paddingValue}px`;
-  box.style.border = `${borderValue}px solid #333`;
-  box.style.boxSizing = boxSizingValue;
-
-  // Update dimensions display
-  updateDimensions(widthValue, heightValue);
+  box.appendChild(dimensionBadge); // Ensure badge remains inside the box
 }
 
 // Set box width
@@ -138,7 +131,7 @@ function setPadding(e) {
   updateDimensions(widthValue, heightValue);
 }
 
-// Set border value
+// set box border
 function setBorder(e) {
   let newBorder = parseFloat(e.target.value);
   if (!newBorder) {
@@ -159,6 +152,7 @@ function setBorder(e) {
   borderValue = newBorder;
   box.style.border = `${borderValue}px solid #333`;
   updateDimensions(widthValue, heightValue);
+  updateBadgePosition(); // Update badge position
 }
 
 // Toggle box-sizing
@@ -168,11 +162,32 @@ function toggleBoxSizing(e) {
   updateDimensions(widthValue, heightValue);
 }
 
+// Initialize function
+function initialize() {
+  widthValue = calculateContentWidth();
+  heightValue = calculateContentHeight();
+
+  // Set the initial values in the input fields
+  widthInput.value = widthValue;
+  heightInput.value = heightValue;
+
+  // Set initial styles for the box
+  box.style.width = `${widthValue}px`;
+  box.style.height = `${heightValue}px`;
+  box.style.padding = `${paddingValue}px`;
+  box.style.border = `${borderValue}px solid #333`;
+  box.style.boxSizing = boxSizingValue;
+
+  // Update dimensions display
+  updateDimensions(widthValue, heightValue);
+  updateBadgePosition();
+}
+
 // Event listeners
 widthInput.addEventListener("change", setBoxWidth);
 heightInput.addEventListener("change", setBoxHeight);
 paddingInput.addEventListener("input", setPadding);
-borderInput.addEventListener("input", setBorder);
+borderInput.addEventListener("change", setBorder);
 switchBoxSizing.addEventListener("change", toggleBoxSizing);
 
 // Initialize the page

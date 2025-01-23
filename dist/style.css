@@ -1,4 +1,10 @@
 /* Global Reset and Typography */
+:root {
+  --mainColor: #0e3254;
+  --secondaryColor: #21f3aa;
+  --backgroundColor: #333;
+  --subbackgroundColor: #555;
+}
 * {
   padding: 0;
   margin: 0;
@@ -8,21 +14,21 @@
 
 body {
   background-color: #f3f4f6;
-  color: #333;
+  color: var(--backgroundColor);
   line-height: 1.6;
   padding: 20px;
 }
 
 .main-header {
   text-align: center;
-  color: #0e3254;
+  color: var(--mainColor);
   font-size: 2rem;
   margin-bottom: 20px;
 }
 
 .subheader {
   text-align: center;
-  color: #555;
+  color: var(--subbackgroundColor);
   font-size: 1.1rem;
   max-width: 700px;
   margin: 10px auto 30px;
@@ -39,7 +45,7 @@ body {
 
 /* Content Section Styling */
 .content {
-  background-color: #0e3254;
+  background-color: var(--mainColor);
   color: white;
   padding: 20px;
   border-radius: 8px;
@@ -47,7 +53,7 @@ body {
 }
 
 .title {
-  color: #21f3aa;
+  color: var(--secondaryColor);
 }
 
 ul {
@@ -70,26 +76,6 @@ li {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Box Styling */
-#box {
-  width: 300px;
-  height: 150px;
-  background-color: #9fd3ea;
-  margin-bottom: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease-in-out;
-  position: relative;
-}
-
-/* Highlight padding area */
-.highlight-padding {
-  box-shadow: inset 0 0 0 10px rgba(255, 55, 0, 0.5);
-}
-
 /* Button and Input Fields Styling */
 .buttons {
   display: flex;
@@ -106,11 +92,11 @@ li {
   justify-content: center;
   align-items: center;
   padding: 10px;
-  color: #0e3254;
+  color: var(--mainColor);
   font-size: 14px;
 }
 label:hover {
-  color: #21f3aa;
+  color: var(--secondaryColor);
 }
 .label-input-container {
   width: 20%;
@@ -128,11 +114,11 @@ input[type="number"] {
   border-radius: 4px;
   font-size: 1rem;
   transition: border-color 0.3s;
-  color: #0e3254;
+  color: var(--mainColor);
 }
 
 input[type="number"]:focus {
-  border-color: #21f3aa;
+  border-color: var(--secondaryColor);
   outline: none;
 }
 
@@ -174,7 +160,7 @@ input[type="number"]:focus {
 }
 
 input:checked + .slider {
-  background-color: #21f3aa;
+  background-color: var(--secondaryColor);
 }
 
 input:checked + .slider:before {
@@ -189,6 +175,40 @@ input:checked + .slider:before {
   border-radius: 50%;
 }
 
+/* Box Styling */
+#box {
+  width: 300px;
+  height: 150px;
+  background-color: #9fd3ea;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease-in-out;
+  position: relative;
+}
+
+#dimension-badge {
+  position: absolute;
+  bottom: -50px;
+  right: 0;
+  background-color: var(--mainColor);
+  color: white;
+  font-size: 14px;
+  padding: 2px 6px;
+  border-radius: 4px;
+  transform: translate(50%, -50%);
+  pointer-events: none;
+  z-index: 10;
+  opacity: 0; /* Initially hidden */
+  transition: opacity 0.3s ease-in-out;
+}
+#box:hover #dimension-badge {
+  opacity: 1; /* Show the badge when hovering over the box */
+}
+
 /* Dimensions Section Styling */
 .dimensions {
   margin-top: 20px;
@@ -198,29 +218,37 @@ input:checked + .slider:before {
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  /* box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); */
   border-radius: 0.45rem;
 }
 
 .dimensions p {
-  font-size: 1rem;
-  color: #0e3254;
+  font-size: 0.9rem;
+  color: var(--mainColor);
 }
 
 /* Styles for Dimensions Section Spans */
-.dimensions span {
+#border-box-size {
   font-weight: bold;
+  font-size: 14px;
   padding: 4px 8px;
   border-radius: 4px;
   color: white;
-  background-color: #0e3254;
+  background-color: var(--mainColor);
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-  transition: background-color 0.3s ease, transform 0.2s ease;
+  transition-property: color, background-color;
+  transition: 0.3s ease, transform 0.2s ease;
 }
 
-.dimensions span:hover {
-  background-color: #21f3aa;
+#border-box-size:hover {
+  background-color: var(--secondaryColor);
+  color: var(--mainColor);
   transform: scale(1.05);
+}
+
+/* Highlight padding area */
+.highlight-padding {
+  box-shadow: inset 0 0 0 10px rgba(255, 55, 0, 0.5);
 }
 
 /* Footer Styling */
