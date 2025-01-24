@@ -29,7 +29,7 @@ This project was created as an educational tool to teach and reinforce the conce
 
 You can try the live version of this project by visiting the following link:
 
-[Live Demo - CSS Box Model Live Preview](https://lustrous-buttercream-2b8b49.netlify.app/)
+[Live Demo - CSS Box Model Live Preview](https://magical-pika-ffddc4.netlify.app/)
 
 ## Author
 
