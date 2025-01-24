@@ -143,8 +143,23 @@ input[type="number"]:focus {
   border-color: var(--secondaryColor);
   outline: none;
 }
+input[type="number"]::placeholder {
+  font-size: 0.8rem;
+  color: #ababab;
+}
 
 /* Switch */
+.box-sizing-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 3px;
+}
+.box-sizing-container span {
+  font-size: 0.9rem;
+
+  color: var(--mainColor);
+}
 .switch {
   position: relative;
   display: inline-block;
@@ -311,9 +326,16 @@ input:checked + .slider:before {
   #dimension-badge {
     transform: translate(50%, -70%);
   }
+  .box-sizing-container {
+    width: 100%;
+    flex-wrap: wrap;
+  }
+  .box-sizing-container span {
+    font-size: 0.8rem;
+  }
 }
 
-@media screen and (min-width: 1600px) {
+/* @media screen and (min-width: 1600px) {
   .wrapper {
     height: 70vh;
     display: flex;
@@ -380,4 +402,4 @@ input:checked + .slider:before {
   .footer {
     font-size: 2rem;
   }
-}
+} */

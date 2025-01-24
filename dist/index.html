@@ -78,6 +78,7 @@
                   title="padding"
                   min="0"
                   max="30"
+                  placeholder="0-30 px"
                 />
               </div>
               <div class="label-input-container">
@@ -88,17 +89,21 @@
                   title="border"
                   min="0"
                   max="30"
+                  placeholder="0-30 px"
                 />
               </div>
             </div>
-            <div>
+            <div class="box-sizing-container">
               <strong>box-sizing:</strong>
-              content-box
-              <label class="switch">
-                <input type="checkbox" />
-                <span class="slider round"></span>
-              </label>
-              border-box
+              <div>
+                <span>content-box</span>
+
+                <label class="switch">
+                  <input type="checkbox" />
+                  <span class="slider round"></span>
+                </label>
+                <span>border-box</span>
+              </div>
             </div>
           </div>
           <div id="box">Content area</div>
