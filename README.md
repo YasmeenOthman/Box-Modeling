@@ -24,6 +24,7 @@ This project was created as an educational tool to teach and reinforce the conce
 - **HTML**: For the structure of the application.
 - **CSS**: For styling and layout.
 - **JavaScript**: For interactive functionality and real-time updates.
+- **webpack**
 
 ## Try it Online
 
