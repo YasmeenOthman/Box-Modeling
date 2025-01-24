@@ -48,9 +48,10 @@ function updateBadgePosition() {
   const borderTopWidth = parseFloat(computedStyles.borderTopWidth) || 0;
   // Calculate the top position of the badge
   const newTopPosition = badgeOffset + borderTopWidth;
-  dimensionBadge.style.top = `${newTopPosition}px`;
+  dimensionBadge.style.right = `${newTopPosition}px`;
 }
 
+// Update dimensions display
 // Update dimensions display
 function updateDimensions(newWidthValue, newHeightValue) {
   if (boxSizingValue === "content-box") {
