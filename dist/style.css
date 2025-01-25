@@ -333,73 +333,7 @@ input:checked + .slider:before {
   .box-sizing-container span {
     font-size: 0.8rem;
   }
-}
-
-/* @media screen and (min-width: 1600px) {
-  .wrapper {
-    height: 70vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.6rem;
-  }
-  .box-model {
-    max-width: 1800px;
-    grid-template-columns: 1fr 2fr;
-    gap: 50px;
-    padding: 10px;
-  }
-
-  .content {
-    padding: 30px;
-  }
-  .buttons {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-  }
-  .inputs {
-    width: 100%;
-  }
-  .box-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  .subheader {
-    font-size: 1.8rem;
-    max-width: 900px;
-  }
-
   input[type="number"] {
-    width: 100%;
-    font-size: 1.5rem;
+    width: 80px;
   }
-
-  .label-input-container {
-    width: 18%;
-    font-size: 1.6rem;
-  }
-
-  #box {
-    width: 400px;
-    height: 200px;
-  }
-  .dimensions {
-    margin-top: 40px;
-    min-height: 130px;
-    width: 60%;
-  }
-
-  .dimensions p {
-    font-size: 1.2em;
-    color: var(--mainColor);
-  }
-  #border-box-size {
-    font-size: 1.2em;
-  }
-
-  .footer {
-    font-size: 2rem;
-  }
-} */
+}
