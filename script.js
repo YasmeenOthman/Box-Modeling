@@ -1,3 +1,5 @@
+import "./dist/style.css";
+
 let box = document.getElementById("box");
 const dimensionBadge = document.getElementById("dimension-badge");
 let widthInput = document.getElementById("width");
