@@ -77,16 +77,18 @@ function updateDimensions(newWidthValue, newHeightValue) {
 
 function updateCSSCode() {
   const cssCode = `
-#box {
-width: ${widthValue}px;
-height: ${heightValue}px;
-padding: ${paddingValue}px;
-border: ${borderValue}px solid #333;
-box-sizing: ${boxSizingValue};
-}
+<span class="brace">#box {</span>
+  <span class="property">width</span>: <span class="value">${widthValue}px</span>;
+  <span class="property">height</span>: <span class="value">${heightValue}px</span>;
+  <span class="property">padding</span>: <span class="value">${paddingValue}px</span>;
+  <span class="property">border</span>: <span class="value">${borderValue}px solid #333</span>;
+  <span class="property">box-sizing</span>: <span class="value">${boxSizingValue}</span>;
+<span class="brace">}</span>
 `.trim();
-  cssCodeBlock.innerText = cssCode;
+
+  cssCodeBlock.innerHTML = cssCode;
 }
+
 // Set box width
 function setBoxWidth(e) {
   let newWidth = parseFloat(e.target.value);

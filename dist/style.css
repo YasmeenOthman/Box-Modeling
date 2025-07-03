@@ -1,9 +1,12 @@
-/* Variables and Global Reset */
+/* Updated Variables with new color palette */
 :root {
-  --mainColor: #0e3254;
-  --secondaryColor: #21f3aa;
-  --backgroundColor: #333;
-  --subbackgroundColor: #555;
+  --primary-color: #2b5876; /* Navy blue */
+  --secondary-color: #ff7e5f; /* Coral */
+  --accent-color: #4ecdc4; /* Teal */
+  --background-light: #f8f9fa;
+  --text-dark: #343a40;
+  --text-medium: #6c757d;
+  --code-bg: #1e1e1e;
 }
 
 * {
@@ -14,8 +17,8 @@
 }
 
 body {
-  background-color: #f3f4f6;
-  color: var(--backgroundColor);
+  background-color: var(--background-light);
+  color: var(--text-dark);
   line-height: 1.6;
   padding: 20px;
 }
@@ -23,14 +26,14 @@ body {
 /* Typography and Headers */
 .main-header {
   text-align: center;
-  color: var(--mainColor);
+  color: var(--primary-color);
   font-size: 2rem;
   margin-bottom: 20px;
 }
 
 .subheader {
   text-align: center;
-  color: var(--subbackgroundColor);
+  color: var(--text-medium);
   font-size: 1.1rem;
   max-width: 700px;
   margin: 10px auto 30px;
@@ -51,9 +54,9 @@ body {
   margin: 0 auto;
 }
 
-/* Content Section */
+/* Content code output Section */
 .content {
-  background-color: var(--mainColor);
+  background-color: var(--primary-color);
   color: white;
   padding: 20px;
   border-radius: 8px;
@@ -61,20 +64,12 @@ body {
 }
 
 .title {
-  color: var(--secondaryColor);
+  color: var(--accent-color);
 }
 
-ul {
-  margin-top: 20px;
-  padding-left: 20px;
-}
-
-li {
-  margin-bottom: 15px;
-}
 .code-output {
   width: 100%;
-  background-color: #1e1e1e;
+  background-color: var(--code-bg);
   color: #d4d4d4;
   padding: 15px;
   border-radius: 8px;
@@ -85,9 +80,29 @@ li {
   overflow-x: auto;
   max-width: 600px;
 }
+
 .code-output h3 {
-  color: var(--secondaryColor);
+  color: var(--accent-color);
   margin-bottom: 10px;
+}
+
+#css-code {
+  font-family: "Courier New", monospace;
+  font-size: 0.95rem;
+  white-space: pre;
+  color: #f4f4f4;
+}
+
+.property {
+  color: var(--accent-color);
+}
+
+.value {
+  color: var(--secondary-color);
+}
+
+.brace {
+  color: #ffb347; /* Light orange */
 }
 
 /* Box Container */
@@ -103,7 +118,6 @@ li {
 }
 
 /* Buttons and Inputs */
-
 .buttons {
   display: flex;
   flex-wrap: wrap;
@@ -122,7 +136,7 @@ li {
 
 .box-sizing-control label {
   font-size: 14px;
-  color: var(--mainColor);
+  color: var(--primary-color);
 }
 
 .inputs {
@@ -131,7 +145,7 @@ li {
   justify-content: center;
   align-items: center;
   padding: 10px;
-  color: var(--mainColor);
+  color: var(--primary-color);
   font-size: 14px;
 }
 
@@ -144,26 +158,27 @@ li {
 }
 
 label:hover {
-  color: var(--secondaryColor);
+  color: var(--secondary-color);
 }
 
 input[type="number"] {
   padding: 10px;
   width: 100px;
-  border: 2px solid #ccc;
+  border: 2px solid #ced4da;
   border-radius: 4px;
   font-size: 1rem;
   transition: border-color 0.3s;
-  color: var(--mainColor);
+  color: var(--primary-color);
 }
 
 input[type="number"]:focus {
-  border-color: var(--secondaryColor);
+  border-color: var(--secondary-color);
   outline: none;
 }
+
 input[type="number"]::placeholder {
   font-size: 0.8rem;
-  color: #ababab;
+  color: #adb5bd;
 }
 
 /* Switch */
@@ -173,11 +188,12 @@ input[type="number"]::placeholder {
   align-items: center;
   gap: 3px;
 }
+
 .box-sizing-container span {
   font-size: 0.9rem;
-
-  color: var(--mainColor);
+  color: var(--primary-color);
 }
+
 .switch {
   position: relative;
   display: inline-block;
@@ -198,7 +214,7 @@ input[type="number"]::placeholder {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: #ccc;
+  background-color: #ced4da;
   transition: 0.4s;
   border-radius: 50px;
 }
@@ -215,7 +231,7 @@ input[type="number"]::placeholder {
 }
 
 input:checked + .slider {
-  background-color: var(--secondaryColor);
+  background-color: var(--secondary-color);
 }
 
 input:checked + .slider:before {
@@ -234,7 +250,7 @@ input:checked + .slider:before {
 #box {
   width: 300px;
   height: 150px;
-  background-color: #9fd3ea;
+  background-color: #e3f2fd; /* Light blue */
   margin-bottom: 20px;
   display: flex;
   align-items: center;
@@ -249,12 +265,11 @@ input:checked + .slider:before {
   position: absolute;
   right: 0;
   transform: translate(100%, -70%);
-  background-color: var(--secondaryColor);
-  color: var(--backgroundColor);
+  background-color: var(--secondary-color);
+  color: white;
   font-size: 14px;
   padding: 2px 6px;
   border-radius: 4px;
-
   pointer-events: none;
   z-index: 10;
   opacity: 0;
@@ -279,7 +294,7 @@ input:checked + .slider:before {
 
 .dimensions p {
   font-size: 0.9rem;
-  color: var(--mainColor);
+  color: var(--primary-color);
 }
 
 #border-box-size {
@@ -288,21 +303,16 @@ input:checked + .slider:before {
   padding: 4px 8px;
   border-radius: 4px;
   color: white;
-  background-color: var(--mainColor);
+  background-color: var(--primary-color);
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
   transition-property: color, background-color;
   transition: 0.3s ease, transform 0.2s ease;
 }
 
 #border-box-size:hover {
-  background-color: var(--secondaryColor);
-  color: var(--mainColor);
+  background-color: var(--secondary-color);
+  color: white;
   transform: scale(1.05);
-}
-
-/* Padding Highlight */
-.highlight-padding {
-  box-shadow: inset 0 0 0 10px rgba(255, 55, 0, 0.5);
 }
 
 /* Footer */
@@ -310,7 +320,7 @@ input:checked + .slider:before {
   height: auto;
   width: 100%;
   text-align: center;
-  background-color: var(--mainColor);
+  background-color: var(--primary-color);
   color: white;
   padding: 15px 20px;
   font-size: 0.9rem;
@@ -326,10 +336,10 @@ input:checked + .slider:before {
 
 .footer a {
   text-decoration: none;
-  color: var(--secondaryColor);
+  color: var(--accent-color);
 }
 
-/* Media Queries */
+/* Media Queries (unchanged) */
 @media screen and (max-width: 786px) {
   .box-model {
     grid-template-columns: repeat(auto-fill, minmax(300px, auto));
