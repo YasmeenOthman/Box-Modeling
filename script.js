@@ -8,6 +8,7 @@ let paddingInput = document.getElementById("padding");
 let borderInput = document.getElementById("border");
 let switchBoxSizing = document.querySelector(".switch input");
 let borderBoxSizeDisplay = document.getElementById("border-box-size");
+const cssCodeBlock = document.getElementById("css-code");
 
 let widthValue = null;
 let heightValue = null;
@@ -74,6 +75,18 @@ function updateDimensions(newWidthValue, newHeightValue) {
   box.appendChild(dimensionBadge); // Ensure badge remains inside the box
 }
 
+function updateCSSCode() {
+  const cssCode = `
+#box {
+width: ${widthValue}px;
+height: ${heightValue}px;
+padding: ${paddingValue}px;
+border: ${borderValue}px solid #333;
+box-sizing: ${boxSizingValue};
+}
+`.trim();
+  cssCodeBlock.innerText = cssCode;
+}
 // Set box width
 function setBoxWidth(e) {
   let newWidth = parseFloat(e.target.value);
@@ -89,6 +102,7 @@ function setBoxWidth(e) {
   widthValue = newWidth;
   box.style.width = `${widthValue}px`;
   updateDimensions(widthValue, heightValue);
+  updateCSSCode();
 }
 
 // Set box height
@@ -106,6 +120,7 @@ function setBoxHeight(e) {
   heightValue = newHeight;
   box.style.height = `${heightValue}px`;
   updateDimensions(widthValue, heightValue);
+  updateCSSCode();
 }
 
 // Set padding value
@@ -131,6 +146,7 @@ function setPadding(e) {
     box.style.boxShadow = "none";
   }
   updateDimensions(widthValue, heightValue);
+  updateCSSCode();
 }
 
 // set box border
@@ -155,6 +171,7 @@ function setBorder(e) {
   box.style.border = `${borderValue}px solid #333`;
   updateDimensions(widthValue, heightValue);
   updateBadgePosition(); // Update badge position
+  updateCSSCode();
 }
 
 // Toggle box-sizing
@@ -162,6 +179,7 @@ function toggleBoxSizing(e) {
   boxSizingValue = e.target.checked ? "border-box" : "content-box";
   box.style.boxSizing = boxSizingValue;
   updateDimensions(widthValue, heightValue);
+  updateCSSCode();
 }
 
 // Initialize function
@@ -183,6 +201,7 @@ function initialize() {
   // Update dimensions display
   updateDimensions(widthValue, heightValue);
   updateBadgePosition();
+  updateCSSCode();
 }
 
 // Event listeners
